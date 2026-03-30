@@ -42,28 +42,14 @@
 
     h1 em { font-style: italic; color: #5c7360; }
 
-    .cal-container {
+    #my-cal-inline-consultation {
       width: 100%;
       max-width: 820px;
-      min-height: 500px;
+      height: 600px;
+      overflow: scroll;
       background: #fff;
       border: 1px solid #e8e0d4;
     }
-
-    /* Placeholder — à supprimer quand Cal.com est intégré */
-    .cal-placeholder {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      min-height: 500px;
-      color: #9e9488;
-      font-size: 0.85rem;
-      text-align: center;
-      padding: 2rem;
-    }
-    .cal-placeholder span { font-size: 2rem; opacity: 0.3; }
 
     footer {
       font-size: 0.7rem;
@@ -79,14 +65,19 @@
     <h1>Laetitia <em>Lagarde</em></h1>
   </header>
 
-  <div class="cal-container">
-    <!-- ↓ REMPLACER CE BLOC PAR L'EMBED CAL.COM ↓ -->
-    <div class="cal-placeholder">
-      <span>📅</span>
-      <p>Widget Cal.com à intégrer ici</p>
-    </div>
-    <!-- ↑ FIN DU BLOC À REMPLACER ↑ -->
-  </div>
+  <!-- Cal inline embed code begins -->
+  <div id="my-cal-inline-consultation"></div>
+  <script type="text/javascript">
+    (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+    Cal("init", "consultation", {origin:"https://app.cal.com"});
+    Cal.ns.consultation("inline", {
+      elementOrSelector:"#my-cal-inline-consultation",
+      config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true"},
+      calLink: "laetitia-lagarde-tf0utg/consultation",
+    });
+    Cal.ns.consultation("ui", {"hideEventTypeDetails":false,"layout":"month_view","styles":{"branding":{"brandColor":"#5c7360"},"body":{"background":"#f7f4ef"}}});
+  </script>
+  <!-- Cal inline embed code ends -->
 
   <footer>86 39 53 · Nouméa, Nouvelle-Calédonie</footer>
 
